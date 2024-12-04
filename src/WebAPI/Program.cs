@@ -13,6 +13,16 @@ using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseSentry(o => {
+    o.Dsn = "https://0d5ba6a121cd5f197096e60bf3e6256c@o4508410133479424.ingest.us.sentry.io/4508410276478976";
+              // When configuring for the first time, to see what the SDK is doing:
+              o.Debug = true;
+              // Set TracesSampleRate to 1.0 to capture 100%
+              // of transactions for tracing.
+              // We recommend adjusting this value in production
+              o.TracesSampleRate = 1.0;
+});
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -23,6 +33,7 @@ builder.Services.AddSingleton<LoginHelper>();
 
 builder.Services.AddSingleton<IItemRepository, ItemSAPRepository>();
 builder.Services.AddSingleton<IOrdersRepository, OrdersRepository>();
+
 
 builder.Services.AddMemoryCache();
 builder.Services.AddOutputCache();
@@ -47,6 +58,8 @@ if (app.Environment.IsDevelopment())
     //app.UseSwagger();
     //app.UseSwaggerUI();
 }
+
+
 
 app.MapGroup("")
 .ItemsEndpoint()

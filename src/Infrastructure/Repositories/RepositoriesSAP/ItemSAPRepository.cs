@@ -10,6 +10,7 @@ namespace Infrastructure.Repositories.RepositoriesSAP
 {
     public class ItemSAPRepository(LoginHelper loginHelper) : IItemRepository
     {
+      
         public async Task<ItemSAPDTO> GetAllItemsAsync()
         {
             LoginResponse loginResponse = await loginHelper.RealizarLogin();
@@ -17,7 +18,8 @@ namespace Infrastructure.Repositories.RepositoriesSAP
             string url = "https://linux-7lxj:50000/b1s/v1/Items?$select=ItemCode,ItemName,BarCode,QuantityOnStock&$filter=startswith(ItemCode,'4')";
 
            HttpClientHandler clientHandler = new HttpClientHandler();
-                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }; 
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };            
+                
 
             using (var client = new HttpClient(clientHandler))
             {
