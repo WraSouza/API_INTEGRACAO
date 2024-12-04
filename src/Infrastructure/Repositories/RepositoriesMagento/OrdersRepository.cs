@@ -46,9 +46,9 @@ namespace Infrastructure.Repositories.RepositoriesMagento
                     }
                     
                  }
-               }                
+               }                      
 
-                return orders ?? throw new Exception("");                
+                return orders ?? [];         
             }            
         }
     }

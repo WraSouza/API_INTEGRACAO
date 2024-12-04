@@ -31,7 +31,7 @@ namespace Infrastructure.Repositories.RepositoriesSAP
 
                  ItemSAPDTO? allItems = JsonConvert.DeserializeObject<ItemSAPDTO>(datasFromStore);
 
-                  return allItems ?? new ItemSAPDTO(null);
+                 return allItems ?? new ItemSAPDTO(null);                  
 
             }
         }

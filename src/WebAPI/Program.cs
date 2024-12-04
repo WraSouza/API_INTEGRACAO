@@ -8,6 +8,8 @@ using Infrastructure.Repositories.RepositoriesMagento;
 using Infrastructure.Repositories.RepositoriesSAP;
 using WebAPI.Controllers.ControllersMagento;
 using WebAPI.Controllers.ControllersSAP;
+using Scalar.AspNetCore;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,7 @@ builder.Services.AddSingleton<IItemRepository, ItemSAPRepository>();
 builder.Services.AddSingleton<IOrdersRepository, OrdersRepository>();
 
 builder.Services.AddMemoryCache();
+builder.Services.AddOutputCache();
 
 builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssemblies(typeof(GetAllItemsQuery).Assembly); });
 
@@ -36,8 +39,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "/openapi/{documentName}.json";
+    });
+    app.MapScalarApiReference();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
 
 app.MapGroup("")
@@ -48,11 +56,9 @@ app.MapGroup("")
 .SalesEndpoint()
 .WithTags("Magento - Sales");
 
-
-
 app.UseHttpsRedirection();
 
-
+app.UseOutputCache();
 
 app.Run();
 
