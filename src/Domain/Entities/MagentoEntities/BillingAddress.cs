@@ -6,7 +6,7 @@ namespace Domain.Entities.MagentoEntities
     {
         public string city { get; set; } = string.Empty;
         public string email { get; set; } = string.Empty;
-        public string firstname { get; set; } = string.Empty;
+        public string? firstname { get; set; }
         public string lastname { get; set; } = string.Empty;
         public string postcode { get; set; } = string.Empty;
         public string region { get; set; } = string.Empty;
