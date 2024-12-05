@@ -7,7 +7,7 @@ namespace Domain.DTO.MagentoDTO
     {
         public string status { get; set; } = string.Empty;
         public int total_qty_ordered { get; set; }
-        public List<Sales> items { get; set; } = new();
+        public List<SalesDTO> items { get; set; } = new();
         public BillingAddress billing_address { get; set; } = new();
         public Payment payment { get; set; } = new();
         public double? total_paid { get; set; }
