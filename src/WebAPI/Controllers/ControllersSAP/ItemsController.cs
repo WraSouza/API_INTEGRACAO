@@ -18,7 +18,6 @@ namespace WebAPI.Controllers.ControllersSAP
                 return Results.Ok(allItems);
             });
 
-
             return app;
          }
     }
