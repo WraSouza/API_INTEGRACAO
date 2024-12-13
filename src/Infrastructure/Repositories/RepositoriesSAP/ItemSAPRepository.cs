@@ -9,13 +9,12 @@ using Newtonsoft.Json;
 namespace Infrastructure.Repositories.RepositoriesSAP
 {
     public class ItemSAPRepository(LoginHelper loginHelper) : IItemRepository
-    {
-      
-        public async Task<ItemSAPDTO> GetAllItemsAsync()
+    {      
+        public async Task<ItemSAPDTO> GetAllItemsAsync(string indexSkip)
         {
             LoginResponse loginResponse = await loginHelper.RealizarLogin();
 
-            string url = "https://linux-7lxj:50000/b1s/v1/Items?$select=ItemCode,ItemName,BarCode,QuantityOnStock&$filter=startswith(ItemCode,'4')";
+            string url = $"https://linux-7lxj:50000/b1s/v1/Items?$select=ItemCode,ItemName,BarCode,QuantityOnStock&$filter=startswith(ItemCode,'4')&$skip={indexSkip}";
 
            HttpClientHandler clientHandler = new HttpClientHandler();
                 clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };            
@@ -33,7 +32,7 @@ namespace Infrastructure.Repositories.RepositoriesSAP
 
                  ItemSAPDTO? allItems = JsonConvert.DeserializeObject<ItemSAPDTO>(datasFromStore);
 
-                 return allItems ?? new ItemSAPDTO(null);                  
+                 return allItems ?? new ItemSAPDTO(null);                
 
             }
         }

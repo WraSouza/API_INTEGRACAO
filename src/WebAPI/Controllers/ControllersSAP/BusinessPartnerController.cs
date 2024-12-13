@@ -7,7 +7,7 @@ namespace WebAPI.Controllers.ControllersSAP
     {
          public static RouteGroupBuilder BusinessPartnerEndpoint(this RouteGroupBuilder app)
          {
-          
+          /*
             app.MapGet("/businesspartner", async (IMediator mediator) =>
             {
                 
@@ -15,7 +15,8 @@ namespace WebAPI.Controllers.ControllersSAP
             }).Produces<InsertBusinessPartnerCommand>(statusCode: StatusCodes.Status200OK)
               .Produces<InsertBusinessPartnerCommand>(statusCode: StatusCodes.Status400BadRequest)
               .WithName("Get-BusinessPartner-SAP")
-              .WithOpenApi();              
+              .WithOpenApi();  
+              */            
 
             return app;
          }

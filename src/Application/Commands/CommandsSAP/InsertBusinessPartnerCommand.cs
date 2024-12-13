@@ -8,7 +8,7 @@ namespace Application.Commands.CommandsSAP
 {
     public class InsertBusinessPartnerCommand : IRequest<BusinessPartnerDTO>
     {
-         public string CardName { get; set; } = string.Empty;
+        public string CardName { get; set; } = string.Empty;
         public string CardType { get; set; } = string.Empty;
         public int GroupCode { get; set; }
         public string Phone1 { get; set; } = string.Empty;    

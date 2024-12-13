@@ -9,7 +9,7 @@ namespace Application.Queries.QueriesSAP.GetAllItems
         public Task<ItemSAPDTO> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
         {
             //throw new NotImplementedException();
-            return repository.GetAllItemsAsync();
+            return repository.GetAllItemsAsync(request.SkipValue.ToString());
         }
     }
 }

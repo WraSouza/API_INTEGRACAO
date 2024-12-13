@@ -5,6 +5,6 @@ namespace Domain.Repositories.SAPRepositories
 {
     public interface IItemRepository
     {
-       Task<ItemSAPDTO> GetAllItemsAsync();
+       Task<ItemSAPDTO> GetAllItemsAsync(string indexSkip);
     }
 }
