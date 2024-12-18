@@ -46,6 +46,12 @@ builder.Services.AddMediatR(cfg =>
 });
 
 var app = builder.Build();
+/*
+builder.Services.AddSwaggerGen(opt => 
+{
+    opt.SwaggerDoc("v1", new () { Title = "API SAP Magento", Version = "v1" });
+});
+*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

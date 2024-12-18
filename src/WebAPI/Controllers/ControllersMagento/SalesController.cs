@@ -21,7 +21,7 @@ namespace WebAPI.Controllers.ControllersMagento
 
                 return Results.Ok(allOrders);
                
-            }).CacheOutput();
+            }).CacheOutput(builder => builder.Expire(TimeSpan.FromMinutes(5)));
 
             return app;
         }
